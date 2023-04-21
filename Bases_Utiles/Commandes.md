@@ -1,6 +1,6 @@
 terraform fmt : ajust le fichier au bon format
 
-terraform show 
+terraform show // terraform state show resource.name 
 
 terraform providers
 
