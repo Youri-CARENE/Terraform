@@ -1,20 +1,15 @@
-# Start with an official image
+# Dockerfile
+
 FROM python:3.8-slim
 
-# Set the working directory
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copier tout le contenu du répertoire courant dans le conteneur
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Installer les dépendances nécessaires
+RUN pip install -r requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
-
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
+# Commande par défaut pour exécuter l'application Python
 CMD ["python", "app.py"]

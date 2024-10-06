@@ -1,36 +1,22 @@
+# terraform.tf
+
 provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
-# Création d'un réseau Docker personnalisé
-resource "docker_network" "my_network" {
-  name = var.network_name
-}
-
-# Création d'un volume Docker pour persister les données de l'application
-resource "docker_volume" "my_volume" {
-  name = var.volume_name
-}
-
-# Téléchargement de l'image Nginx
-resource "docker_image" "nginx" {
-  name = var.nginx_image
-}
-
-# Création du conteneur Nginx
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name  = var.nginx_container_name
-  networks_advanced {
-    name = docker_network.my_network.name
+resource "docker_image" "my_image" {
+  name = "terraform-demo"
+  build {
+    context    = "${path.module}/."
+    dockerfile = "${path.module}/Dockerfile"
   }
-  volumes {
-    host_path      = docker_volume.my_volume.name
-    container_path = "/usr/share/nginx/html"
-  }
+}
+
+resource "docker_container" "my_container" {
+  image = docker_image.my_image.latest
+  name  = "terraform-demo-container"
   ports {
-    internal = var.nginx_internal_port
-    external = var.nginx_external_port
+    internal = 8080
+    external = 8080
   }
-  restart = "always"
 }

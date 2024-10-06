@@ -1,17 +1,11 @@
-# Adresse IP du conteneur Nginx
-output "nginx_container_ip" {
-  description = "Adresse IP du conteneur Nginx"
-  value       = docker_container.nginx.network_data[0].ip_address
+# Outputs.tf
+
+output "container_name" {
+  description = "Nom du conteneur Docker"
+  value       = docker_container.my_container.name
 }
 
-# Nom du réseau Docker créé
-output "network_name" {
-  description = "Nom du réseau Docker créé"
-  value       = docker_network.my_network.name
-}
-
-# Nom du volume Docker créé
-output "volume_name" {
-  description = "Nom du volume Docker créé"
-  value       = docker_volume.my_volume.name
+output "container_port" {
+  description = "Port exposé du conteneur Docker"
+  value       = docker_container.my_container.ports[0].external
 }

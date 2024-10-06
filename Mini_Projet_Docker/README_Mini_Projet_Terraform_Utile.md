@@ -1,28 +1,24 @@
+# Mini Projet Terraform & Docker
 
-# Mini Projet Terraform Utile
+## Introduction
+Ce projet a été conçu pour aider les utilisateurs à apprendre et à pratiquer Terraform en utilisant Docker. En créant et en déployant un conteneur Docker, vous vous familiariserez avec des concepts clés de l'infrastructure en tant que code et la conteneurisation.
 
- Ce dossier contient des fiches de révision conçues pour vous aider à vous lancer avec Terraform. Que vous soyez un débutant ou que vous cherchiez à rafraîchir vos connaissances, ces fiches couvrent les étapes essentielles pour réaliser un projet Terraform simple.
+## Objectifs du Projet
+- Comprendre comment utiliser Terraform pour construire et gérer des conteneurs Docker.
+- Développer des compétences pratiques en utilisant Docker et Terraform ensemble.
 
-## Contenu
+## Prérequis
+- **Terraform** : Version 1.1.2 ou ultérieure.
+- **Docker** : Assurez-vous que Docker est installé et en cours d'exécution sur votre machine.
 
-### 1. Dockerfile
+## Fichiers Inclus
+- **Dockerfile** : Définit l'image Docker.
+- **terraform.tf** : Le fichier principal pour définir l'infrastructure.
+- **Variables.tf** : Les variables utilisées dans la configuration Terraform.
+- **Outputs.tf** : Déclare les informations de sortie après le déploiement.
+- **LaunchConteneur.sh** et **Start.sh** : Scripts pour automatiser la construction et l'exécution des conteneurs.
 
-Le fichier `Dockerfile` contient les instructions nécessaires pour construire une image Docker pour notre projet Terraform. Voici quelques points abordés :
-
-- Configuration de l'image de base
-- Installation des dépendances
-- Configuration de l'environnement de travail
-
-### 2. LaunchConteneur.sh
-
-Le fichier `LaunchConteneur.sh` est un script shell pour construire et lancer un conteneur Docker basé sur notre `Dockerfile`. Les étapes incluent :
-
-- Construction de l'image Docker avec `docker build`
-- Lancement du conteneur avec `docker run` en montant le volume nécessaire
-
-### 3. Start.sh
-
-Le fichier `Start.sh` est un script shell pour automatiser le lancement du script `LaunchConteneur.sh`. Les étapes incluent :
-
-- Donner les permissions d'exécution au script `LaunchConteneur.sh`
-- Exécution du script `LaunchConteneur.sh`
+## Étapes pour Lancer le Projet
+1. **Construire l'Image Docker** :
+   ```shell
+   ./LaunchConteneur.sh
