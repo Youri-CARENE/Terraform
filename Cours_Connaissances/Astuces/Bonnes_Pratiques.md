@@ -1,51 +1,32 @@
 # Guide des Bonnes Pratiques pour Terraform
 
 ## Introduction
+Ce guide fournit des recommandations pour une utilisation efficace de Terraform en tant qu'outil d'infrastructure en tant que code (IaC).
 
-Ce document vise à établir un ensemble de recommandations pour l'utilisation efficace de Terraform pour la gestion des infrastructures en tant que code (IAC).
+### 1. Initialisation et Configuration
+- **Version** : Utiliser `required_version` pour garantir la compatibilité.
+- **Provider Configuration** : Configurer les `providers` correctement avec des versions spécifiées.
 
-## Sommaire
-1. **Initialisation et configuration**
-2. **Organisation du code**
-3. **Sécurité**
-4. **Gestion de l'état**
-5. **Modularité**
-6. **Tests et validation**
-7. **Ressources supplémentaires**
-
-### 1. Initialisation et configuration
-
-- **Version** : Spécifier toujours une version précise de Terraform à l'aide de la directive `required_version` pour garantir la compatibilité.
-- **Provider Configuration** : Utiliser le bloc `provider` pour définir la version et les paramètres de connexion.
-
-### 2. Organisation du code
-
-- **Structuration** : Organiser le code en fonction de l'environnement (`prod`, `staging`, `dev`) et de la couche (`network`, `app`).
-- **Nommage** : Adopter une convention de nommage claire et cohérente pour les ressources, variables et modules.
+### 2. Organisation du Code
+- **Structuration** : Organiser le code par environnement (`prod`, `staging`, `dev`) et par couche (`network`, `app`).
+- **Nommage** : Utiliser une convention de nommage cohérente pour les ressources et variables.
 
 ### 3. Sécurité
+- **Secrets** : Ne jamais hardcoder des secrets, utiliser `terraform.tfvars` et `.gitignore`.
+- **Permissions minimales** : Utiliser le principe du moindre privilège.
 
-- **Secrets** : Ne jamais hardcoder des secrets ou des clés. Utiliser `terraform.tfvars` pour définir des valeurs variables et les exclure avec `.gitignore`.
-- **Minimiser les permissions** : Utiliser le principe du moindre privilège pour les droits d'accès accordés aux ressources.
-
-### 4. Gestion de l'état
-
-- **Stockage distant** : Utiliser des backends comme `S3` ou `Azure Blob Storage` pour stocker l'état de Terraform de manière sécurisée et centralisée.
-- **Verrouillage d'état** : Activer le verrouillage d'état pour éviter les conflits lors des modifications simultanées.
+### 4. Gestion de l'État
+- **Stockage distant** : Utiliser des backends sécurisés (ex. : S3) pour l'état.
+- **Verrouillage d'État** : Activer le verrouillage pour éviter des conflits.
 
 ### 5. Modularité
+- **Modules réutilisables** : Créer des modules pour favoriser la maintenabilité.
+- **Versionnage** : Versionner les modules pour la stabilité.
 
-- **Modules réutilisables** : Créer des modules pour les composants réutilisables afin de favoriser la répétabilité et la maintenabilité.
-- **Versionnage des modules** : Versionner les modules pour garantir la stabilité lors de leur utilisation.
+### 6. Tests et Validation
+- **`terraform fmt` et `terraform validate`** : Pour vérifier la syntaxe et le formatage.
+- **Planification** : Toujours exécuter `terraform plan` avant `terraform apply`.
 
-### 6. Tests et validation
-
-- **fmt et validate** : Exécuter `terraform fmt` pour formater le code et `terraform validate` pour vérifier sa validité.
-- **Planification** : Toujours exécuter `terraform plan` avant `terraform apply` pour prévisualiser les changements.
-
-### 7. Ressources supplémentaires
-
-- [Documentation officielle de Terraform](https://learn.hashicorp.com/terraform)
+### 7. Ressources Supplémentaires
+- [Documentation Terraform](https://learn.hashicorp.com/terraform)
 - [Terraform Best Practices](https://www.terraform-best-practices.com/)
-- [Awesome Terraform](https://github.com/shuaibiyy/awesome-terraform) : Une collection de ressources et modules pour Terraform.
-
